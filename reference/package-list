@@ -1,0 +1,12 @@
+org.whispersystems.textsecure.api
+org.whispersystems.textsecure.api.crypto
+org.whispersystems.textsecure.api.messages
+org.whispersystems.textsecure.api.push
+org.whispersystems.textsecure.api.push.exceptions
+org.whispersystems.textsecure.api.util
+org.whispersystems.textsecure.internal.crypto
+org.whispersystems.textsecure.internal.push
+org.whispersystems.textsecure.internal.push.exceptions
+org.whispersystems.textsecure.internal.util
+org.whispersystems.textsecure.internal.websocket
+
