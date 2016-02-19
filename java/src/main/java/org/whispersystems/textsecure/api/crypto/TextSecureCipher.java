@@ -187,8 +187,14 @@ public class TextSecureCipher {
       return TextSecureSyncMessage.forRequest(new RequestMessage(content.getRequest()));
     }
 
-    if (content.hasRead()) {
-      return TextSecureSyncMessage.forRead(new ReadMessage(content.getRead().getTimestampsList()));
+    if (content.getReadList().size() > 0) {
+      List<ReadMessage> readMessages = new LinkedList<>();
+
+      for (SyncMessage.Read read : content.getReadList()) {
+        readMessages.add(new ReadMessage(read.getSender(), read.getTimestamp()));
+      }
+
+      return TextSecureSyncMessage.forRead(readMessages);
     }
 
     return TextSecureSyncMessage.empty();

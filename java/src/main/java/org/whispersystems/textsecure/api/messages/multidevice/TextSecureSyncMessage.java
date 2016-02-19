@@ -4,25 +4,28 @@ import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class TextSecureSyncMessage {
 
   private final Optional<SentTranscriptMessage> sent;
   private final Optional<TextSecureAttachment>  contacts;
   private final Optional<TextSecureAttachment>  groups;
   private final Optional<RequestMessage>        request;
-  private final Optional<ReadMessage>           read;
+  private final Optional<List<ReadMessage>>     reads;
 
   private TextSecureSyncMessage(Optional<SentTranscriptMessage> sent,
                                 Optional<TextSecureAttachment>  contacts,
                                 Optional<TextSecureAttachment>  groups,
                                 Optional<RequestMessage>        request,
-                                Optional<ReadMessage>           read)
+                                Optional<List<ReadMessage>>     reads)
   {
     this.sent     = sent;
     this.contacts = contacts;
     this.groups   = groups;
     this.request  = request;
-    this.read     = read;
+    this.reads    = reads;
   }
 
   public static TextSecureSyncMessage forSentTranscript(SentTranscriptMessage sent) {
@@ -30,7 +33,7 @@ public class TextSecureSyncMessage {
                                      Optional.<TextSecureAttachment>absent(),
                                      Optional.<TextSecureAttachment>absent(),
                                      Optional.<RequestMessage>absent(),
-                                     Optional.<ReadMessage>absent());
+                                     Optional.<List<ReadMessage>>absent());
   }
 
   public static TextSecureSyncMessage forContacts(TextSecureAttachment contacts) {
@@ -38,7 +41,7 @@ public class TextSecureSyncMessage {
                                      Optional.of(contacts),
                                      Optional.<TextSecureAttachment>absent(),
                                      Optional.<RequestMessage>absent(),
-                                     Optional.<ReadMessage>absent());
+                                     Optional.<List<ReadMessage>>absent());
   }
 
   public static TextSecureSyncMessage forGroups(TextSecureAttachment groups) {
@@ -46,7 +49,7 @@ public class TextSecureSyncMessage {
                                      Optional.<TextSecureAttachment>absent(),
                                      Optional.of(groups),
                                      Optional.<RequestMessage>absent(),
-                                     Optional.<ReadMessage>absent());
+                                     Optional.<List<ReadMessage>>absent());
   }
 
   public static TextSecureSyncMessage forRequest(RequestMessage request) {
@@ -54,23 +57,35 @@ public class TextSecureSyncMessage {
                                      Optional.<TextSecureAttachment>absent(),
                                      Optional.<TextSecureAttachment>absent(),
                                      Optional.of(request),
-                                     Optional.<ReadMessage>absent());
+                                     Optional.<List<ReadMessage>>absent());
   }
 
-  public static TextSecureSyncMessage forRead(ReadMessage read) {
+  public static TextSecureSyncMessage forRead(List<ReadMessage> reads) {
     return new TextSecureSyncMessage(Optional.<SentTranscriptMessage>absent(),
                                      Optional.<TextSecureAttachment>absent(),
                                      Optional.<TextSecureAttachment>absent(),
                                      Optional.<RequestMessage>absent(),
-                                     Optional.of(read));
+                                     Optional.of(reads));
   }
+
+  public static TextSecureSyncMessage forRead(ReadMessage read) {
+    List<ReadMessage> reads = new LinkedList<>();
+    reads.add(read);
+
+    return new TextSecureSyncMessage(Optional.<SentTranscriptMessage>absent(),
+                                     Optional.<TextSecureAttachment>absent(),
+                                     Optional.<TextSecureAttachment>absent(),
+                                     Optional.<RequestMessage>absent(),
+                                     Optional.of(reads));
+  }
+
 
   public static TextSecureSyncMessage empty() {
     return new TextSecureSyncMessage(Optional.<SentTranscriptMessage>absent(),
                                      Optional.<TextSecureAttachment>absent(),
                                      Optional.<TextSecureAttachment>absent(),
                                      Optional.<RequestMessage>absent(),
-                                     Optional.<ReadMessage>absent());
+                                     Optional.<List<ReadMessage>>absent());
   }
 
   public Optional<SentTranscriptMessage> getSent() {
@@ -89,8 +104,8 @@ public class TextSecureSyncMessage {
     return request;
   }
 
-  public Optional<ReadMessage> getRead() {
-    return read;
+  public Optional<List<ReadMessage>> getRead() {
+    return reads;
   }
 
 }

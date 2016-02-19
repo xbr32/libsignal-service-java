@@ -3165,19 +3165,30 @@ public final class TextSecureProtos {
      */
     org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.RequestOrBuilder getRequestOrBuilder();
 
-    // optional .textsecure.SyncMessage.Read read = 5;
+    // repeated .textsecure.SyncMessage.Read read = 5;
     /**
-     * <code>optional .textsecure.SyncMessage.Read read = 5;</code>
+     * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
      */
-    boolean hasRead();
+    java.util.List<org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read> 
+        getReadList();
     /**
-     * <code>optional .textsecure.SyncMessage.Read read = 5;</code>
+     * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
      */
-    org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read getRead();
+    org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read getRead(int index);
     /**
-     * <code>optional .textsecure.SyncMessage.Read read = 5;</code>
+     * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
      */
-    org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.ReadOrBuilder getReadOrBuilder();
+    int getReadCount();
+    /**
+     * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
+     */
+    java.util.List<? extends org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.ReadOrBuilder> 
+        getReadOrBuilderList();
+    /**
+     * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
+     */
+    org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.ReadOrBuilder getReadOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code textsecure.SyncMessage}
@@ -3283,16 +3294,11 @@ public final class TextSecureProtos {
               break;
             }
             case 42: {
-              org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000010) == 0x00000010)) {
-                subBuilder = read_.toBuilder();
+              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+                read_ = new java.util.ArrayList<org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read>();
+                mutable_bitField0_ |= 0x00000010;
               }
-              read_ = input.readMessage(org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(read_);
-                read_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000010;
+              read_.add(input.readMessage(org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.PARSER, extensionRegistry));
               break;
             }
           }
@@ -3303,6 +3309,9 @@ public final class TextSecureProtos {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+          read_ = java.util.Collections.unmodifiableList(read_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -5591,19 +5600,30 @@ public final class TextSecureProtos {
     public interface ReadOrBuilder
         extends com.google.protobuf.MessageOrBuilder {
 
-      // repeated uint64 timestamps = 1;
+      // optional string sender = 1;
       /**
-       * <code>repeated uint64 timestamps = 1;</code>
+       * <code>optional string sender = 1;</code>
        */
-      java.util.List<java.lang.Long> getTimestampsList();
+      boolean hasSender();
       /**
-       * <code>repeated uint64 timestamps = 1;</code>
+       * <code>optional string sender = 1;</code>
        */
-      int getTimestampsCount();
+      java.lang.String getSender();
       /**
-       * <code>repeated uint64 timestamps = 1;</code>
+       * <code>optional string sender = 1;</code>
        */
-      long getTimestamps(int index);
+      com.google.protobuf.ByteString
+          getSenderBytes();
+
+      // optional uint64 timestamp = 2;
+      /**
+       * <code>optional uint64 timestamp = 2;</code>
+       */
+      boolean hasTimestamp();
+      /**
+       * <code>optional uint64 timestamp = 2;</code>
+       */
+      long getTimestamp();
     }
     /**
      * Protobuf type {@code textsecure.SyncMessage.Read}
@@ -5656,25 +5676,14 @@ public final class TextSecureProtos {
                 }
                 break;
               }
-              case 8: {
-                if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-                  timestamps_ = new java.util.ArrayList<java.lang.Long>();
-                  mutable_bitField0_ |= 0x00000001;
-                }
-                timestamps_.add(input.readUInt64());
+              case 10: {
+                bitField0_ |= 0x00000001;
+                sender_ = input.readBytes();
                 break;
               }
-              case 10: {
-                int length = input.readRawVarint32();
-                int limit = input.pushLimit(length);
-                if (!((mutable_bitField0_ & 0x00000001) == 0x00000001) && input.getBytesUntilLimit() > 0) {
-                  timestamps_ = new java.util.ArrayList<java.lang.Long>();
-                  mutable_bitField0_ |= 0x00000001;
-                }
-                while (input.getBytesUntilLimit() > 0) {
-                  timestamps_.add(input.readUInt64());
-                }
-                input.popLimit(limit);
+              case 16: {
+                bitField0_ |= 0x00000002;
+                timestamp_ = input.readUInt64();
                 break;
               }
             }
@@ -5685,9 +5694,6 @@ public final class TextSecureProtos {
           throw new com.google.protobuf.InvalidProtocolBufferException(
               e.getMessage()).setUnfinishedMessage(this);
         } finally {
-          if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-            timestamps_ = java.util.Collections.unmodifiableList(timestamps_);
-          }
           this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
@@ -5719,31 +5725,69 @@ public final class TextSecureProtos {
         return PARSER;
       }
 
-      // repeated uint64 timestamps = 1;
-      public static final int TIMESTAMPS_FIELD_NUMBER = 1;
-      private java.util.List<java.lang.Long> timestamps_;
+      private int bitField0_;
+      // optional string sender = 1;
+      public static final int SENDER_FIELD_NUMBER = 1;
+      private java.lang.Object sender_;
       /**
-       * <code>repeated uint64 timestamps = 1;</code>
+       * <code>optional string sender = 1;</code>
        */
-      public java.util.List<java.lang.Long>
-          getTimestampsList() {
-        return timestamps_;
+      public boolean hasSender() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>repeated uint64 timestamps = 1;</code>
+       * <code>optional string sender = 1;</code>
        */
-      public int getTimestampsCount() {
-        return timestamps_.size();
+      public java.lang.String getSender() {
+        java.lang.Object ref = sender_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            sender_ = s;
+          }
+          return s;
+        }
       }
       /**
-       * <code>repeated uint64 timestamps = 1;</code>
+       * <code>optional string sender = 1;</code>
        */
-      public long getTimestamps(int index) {
-        return timestamps_.get(index);
+      public com.google.protobuf.ByteString
+          getSenderBytes() {
+        java.lang.Object ref = sender_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          sender_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      // optional uint64 timestamp = 2;
+      public static final int TIMESTAMP_FIELD_NUMBER = 2;
+      private long timestamp_;
+      /**
+       * <code>optional uint64 timestamp = 2;</code>
+       */
+      public boolean hasTimestamp() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional uint64 timestamp = 2;</code>
+       */
+      public long getTimestamp() {
+        return timestamp_;
       }
 
       private void initFields() {
-        timestamps_ = java.util.Collections.emptyList();
+        sender_ = "";
+        timestamp_ = 0L;
       }
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
@@ -5757,8 +5801,11 @@ public final class TextSecureProtos {
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
         getSerializedSize();
-        for (int i = 0; i < timestamps_.size(); i++) {
-          output.writeUInt64(1, timestamps_.get(i));
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          output.writeBytes(1, getSenderBytes());
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          output.writeUInt64(2, timestamp_);
         }
         getUnknownFields().writeTo(output);
       }
@@ -5769,14 +5816,13 @@ public final class TextSecureProtos {
         if (size != -1) return size;
 
         size = 0;
-        {
-          int dataSize = 0;
-          for (int i = 0; i < timestamps_.size(); i++) {
-            dataSize += com.google.protobuf.CodedOutputStream
-              .computeUInt64SizeNoTag(timestamps_.get(i));
-          }
-          size += dataSize;
-          size += 1 * getTimestampsList().size();
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(1, getSenderBytes());
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeUInt64Size(2, timestamp_);
         }
         size += getUnknownFields().getSerializedSize();
         memoizedSerializedSize = size;
@@ -5894,8 +5940,10 @@ public final class TextSecureProtos {
 
         public Builder clear() {
           super.clear();
-          timestamps_ = java.util.Collections.emptyList();
+          sender_ = "";
           bitField0_ = (bitField0_ & ~0x00000001);
+          timestamp_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00000002);
           return this;
         }
 
@@ -5923,11 +5971,16 @@ public final class TextSecureProtos {
         public org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read buildPartial() {
           org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read result = new org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read(this);
           int from_bitField0_ = bitField0_;
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            timestamps_ = java.util.Collections.unmodifiableList(timestamps_);
-            bitField0_ = (bitField0_ & ~0x00000001);
+          int to_bitField0_ = 0;
+          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+            to_bitField0_ |= 0x00000001;
           }
-          result.timestamps_ = timestamps_;
+          result.sender_ = sender_;
+          if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+            to_bitField0_ |= 0x00000002;
+          }
+          result.timestamp_ = timestamp_;
+          result.bitField0_ = to_bitField0_;
           onBuilt();
           return result;
         }
@@ -5943,15 +5996,13 @@ public final class TextSecureProtos {
 
         public Builder mergeFrom(org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read other) {
           if (other == org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.getDefaultInstance()) return this;
-          if (!other.timestamps_.isEmpty()) {
-            if (timestamps_.isEmpty()) {
-              timestamps_ = other.timestamps_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureTimestampsIsMutable();
-              timestamps_.addAll(other.timestamps_);
-            }
+          if (other.hasSender()) {
+            bitField0_ |= 0x00000001;
+            sender_ = other.sender_;
             onChanged();
+          }
+          if (other.hasTimestamp()) {
+            setTimestamp(other.getTimestamp());
           }
           this.mergeUnknownFields(other.getUnknownFields());
           return this;
@@ -5980,68 +6031,109 @@ public final class TextSecureProtos {
         }
         private int bitField0_;
 
-        // repeated uint64 timestamps = 1;
-        private java.util.List<java.lang.Long> timestamps_ = java.util.Collections.emptyList();
-        private void ensureTimestampsIsMutable() {
-          if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-            timestamps_ = new java.util.ArrayList<java.lang.Long>(timestamps_);
-            bitField0_ |= 0x00000001;
-           }
+        // optional string sender = 1;
+        private java.lang.Object sender_ = "";
+        /**
+         * <code>optional string sender = 1;</code>
+         */
+        public boolean hasSender() {
+          return ((bitField0_ & 0x00000001) == 0x00000001);
         }
         /**
-         * <code>repeated uint64 timestamps = 1;</code>
+         * <code>optional string sender = 1;</code>
          */
-        public java.util.List<java.lang.Long>
-            getTimestampsList() {
-          return java.util.Collections.unmodifiableList(timestamps_);
+        public java.lang.String getSender() {
+          java.lang.Object ref = sender_;
+          if (!(ref instanceof java.lang.String)) {
+            java.lang.String s = ((com.google.protobuf.ByteString) ref)
+                .toStringUtf8();
+            sender_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
         }
         /**
-         * <code>repeated uint64 timestamps = 1;</code>
+         * <code>optional string sender = 1;</code>
          */
-        public int getTimestampsCount() {
-          return timestamps_.size();
+        public com.google.protobuf.ByteString
+            getSenderBytes() {
+          java.lang.Object ref = sender_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            sender_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
         }
         /**
-         * <code>repeated uint64 timestamps = 1;</code>
+         * <code>optional string sender = 1;</code>
          */
-        public long getTimestamps(int index) {
-          return timestamps_.get(index);
-        }
-        /**
-         * <code>repeated uint64 timestamps = 1;</code>
-         */
-        public Builder setTimestamps(
-            int index, long value) {
-          ensureTimestampsIsMutable();
-          timestamps_.set(index, value);
+        public Builder setSender(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+          sender_ = value;
           onChanged();
           return this;
         }
         /**
-         * <code>repeated uint64 timestamps = 1;</code>
+         * <code>optional string sender = 1;</code>
          */
-        public Builder addTimestamps(long value) {
-          ensureTimestampsIsMutable();
-          timestamps_.add(value);
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>repeated uint64 timestamps = 1;</code>
-         */
-        public Builder addAllTimestamps(
-            java.lang.Iterable<? extends java.lang.Long> values) {
-          ensureTimestampsIsMutable();
-          super.addAll(values, timestamps_);
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>repeated uint64 timestamps = 1;</code>
-         */
-        public Builder clearTimestamps() {
-          timestamps_ = java.util.Collections.emptyList();
+        public Builder clearSender() {
           bitField0_ = (bitField0_ & ~0x00000001);
+          sender_ = getDefaultInstance().getSender();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional string sender = 1;</code>
+         */
+        public Builder setSenderBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+          sender_ = value;
+          onChanged();
+          return this;
+        }
+
+        // optional uint64 timestamp = 2;
+        private long timestamp_ ;
+        /**
+         * <code>optional uint64 timestamp = 2;</code>
+         */
+        public boolean hasTimestamp() {
+          return ((bitField0_ & 0x00000002) == 0x00000002);
+        }
+        /**
+         * <code>optional uint64 timestamp = 2;</code>
+         */
+        public long getTimestamp() {
+          return timestamp_;
+        }
+        /**
+         * <code>optional uint64 timestamp = 2;</code>
+         */
+        public Builder setTimestamp(long value) {
+          bitField0_ |= 0x00000002;
+          timestamp_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional uint64 timestamp = 2;</code>
+         */
+        public Builder clearTimestamp() {
+          bitField0_ = (bitField0_ & ~0x00000002);
+          timestamp_ = 0L;
           onChanged();
           return this;
         }
@@ -6146,26 +6238,40 @@ public final class TextSecureProtos {
       return request_;
     }
 
-    // optional .textsecure.SyncMessage.Read read = 5;
+    // repeated .textsecure.SyncMessage.Read read = 5;
     public static final int READ_FIELD_NUMBER = 5;
-    private org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read read_;
+    private java.util.List<org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read> read_;
     /**
-     * <code>optional .textsecure.SyncMessage.Read read = 5;</code>
+     * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
      */
-    public boolean hasRead() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
-    }
-    /**
-     * <code>optional .textsecure.SyncMessage.Read read = 5;</code>
-     */
-    public org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read getRead() {
+    public java.util.List<org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read> getReadList() {
       return read_;
     }
     /**
-     * <code>optional .textsecure.SyncMessage.Read read = 5;</code>
+     * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
      */
-    public org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.ReadOrBuilder getReadOrBuilder() {
+    public java.util.List<? extends org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.ReadOrBuilder> 
+        getReadOrBuilderList() {
       return read_;
+    }
+    /**
+     * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
+     */
+    public int getReadCount() {
+      return read_.size();
+    }
+    /**
+     * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
+     */
+    public org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read getRead(int index) {
+      return read_.get(index);
+    }
+    /**
+     * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
+     */
+    public org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.ReadOrBuilder getReadOrBuilder(
+        int index) {
+      return read_.get(index);
     }
 
     private void initFields() {
@@ -6173,7 +6279,7 @@ public final class TextSecureProtos {
       contacts_ = org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Contacts.getDefaultInstance();
       groups_ = org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Groups.getDefaultInstance();
       request_ = org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Request.getDefaultInstance();
-      read_ = org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.getDefaultInstance();
+      read_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -6199,8 +6305,8 @@ public final class TextSecureProtos {
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeMessage(4, request_);
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeMessage(5, read_);
+      for (int i = 0; i < read_.size(); i++) {
+        output.writeMessage(5, read_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -6227,9 +6333,9 @@ public final class TextSecureProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, request_);
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      for (int i = 0; i < read_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, read_);
+          .computeMessageSize(5, read_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -6377,11 +6483,11 @@ public final class TextSecureProtos {
         }
         bitField0_ = (bitField0_ & ~0x00000008);
         if (readBuilder_ == null) {
-          read_ = org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.getDefaultInstance();
+          read_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000010);
         } else {
           readBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -6442,10 +6548,11 @@ public final class TextSecureProtos {
         } else {
           result.request_ = requestBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
         if (readBuilder_ == null) {
+          if (((bitField0_ & 0x00000010) == 0x00000010)) {
+            read_ = java.util.Collections.unmodifiableList(read_);
+            bitField0_ = (bitField0_ & ~0x00000010);
+          }
           result.read_ = read_;
         } else {
           result.read_ = readBuilder_.build();
@@ -6478,8 +6585,31 @@ public final class TextSecureProtos {
         if (other.hasRequest()) {
           mergeRequest(other.getRequest());
         }
-        if (other.hasRead()) {
-          mergeRead(other.getRead());
+        if (readBuilder_ == null) {
+          if (!other.read_.isEmpty()) {
+            if (read_.isEmpty()) {
+              read_ = other.read_;
+              bitField0_ = (bitField0_ & ~0x00000010);
+            } else {
+              ensureReadIsMutable();
+              read_.addAll(other.read_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.read_.isEmpty()) {
+            if (readBuilder_.isEmpty()) {
+              readBuilder_.dispose();
+              readBuilder_ = null;
+              read_ = other.read_;
+              bitField0_ = (bitField0_ & ~0x00000010);
+              readBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getReadFieldBuilder() : null;
+            } else {
+              readBuilder_.addAllMessages(other.read_);
+            }
+          }
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -6976,116 +7106,239 @@ public final class TextSecureProtos {
         return requestBuilder_;
       }
 
-      // optional .textsecure.SyncMessage.Read read = 5;
-      private org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read read_ = org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read, org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.Builder, org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.ReadOrBuilder> readBuilder_;
-      /**
-       * <code>optional .textsecure.SyncMessage.Read read = 5;</code>
-       */
-      public boolean hasRead() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+      // repeated .textsecure.SyncMessage.Read read = 5;
+      private java.util.List<org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read> read_ =
+        java.util.Collections.emptyList();
+      private void ensureReadIsMutable() {
+        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+          read_ = new java.util.ArrayList<org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read>(read_);
+          bitField0_ |= 0x00000010;
+         }
       }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read, org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.Builder, org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.ReadOrBuilder> readBuilder_;
+
       /**
-       * <code>optional .textsecure.SyncMessage.Read read = 5;</code>
+       * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
        */
-      public org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read getRead() {
+      public java.util.List<org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read> getReadList() {
         if (readBuilder_ == null) {
-          return read_;
+          return java.util.Collections.unmodifiableList(read_);
         } else {
-          return readBuilder_.getMessage();
+          return readBuilder_.getMessageList();
         }
       }
       /**
-       * <code>optional .textsecure.SyncMessage.Read read = 5;</code>
+       * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
        */
-      public Builder setRead(org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read value) {
+      public int getReadCount() {
+        if (readBuilder_ == null) {
+          return read_.size();
+        } else {
+          return readBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
+       */
+      public org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read getRead(int index) {
+        if (readBuilder_ == null) {
+          return read_.get(index);
+        } else {
+          return readBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
+       */
+      public Builder setRead(
+          int index, org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read value) {
         if (readBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          read_ = value;
+          ensureReadIsMutable();
+          read_.set(index, value);
           onChanged();
         } else {
-          readBuilder_.setMessage(value);
+          readBuilder_.setMessage(index, value);
         }
-        bitField0_ |= 0x00000010;
         return this;
       }
       /**
-       * <code>optional .textsecure.SyncMessage.Read read = 5;</code>
+       * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
        */
       public Builder setRead(
+          int index, org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.Builder builderForValue) {
+        if (readBuilder_ == null) {
+          ensureReadIsMutable();
+          read_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          readBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
+       */
+      public Builder addRead(org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read value) {
+        if (readBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureReadIsMutable();
+          read_.add(value);
+          onChanged();
+        } else {
+          readBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
+       */
+      public Builder addRead(
+          int index, org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read value) {
+        if (readBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureReadIsMutable();
+          read_.add(index, value);
+          onChanged();
+        } else {
+          readBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
+       */
+      public Builder addRead(
           org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.Builder builderForValue) {
         if (readBuilder_ == null) {
-          read_ = builderForValue.build();
+          ensureReadIsMutable();
+          read_.add(builderForValue.build());
           onChanged();
         } else {
-          readBuilder_.setMessage(builderForValue.build());
+          readBuilder_.addMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000010;
         return this;
       }
       /**
-       * <code>optional .textsecure.SyncMessage.Read read = 5;</code>
+       * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
        */
-      public Builder mergeRead(org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read value) {
+      public Builder addRead(
+          int index, org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.Builder builderForValue) {
         if (readBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) == 0x00000010) &&
-              read_ != org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.getDefaultInstance()) {
-            read_ =
-              org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.newBuilder(read_).mergeFrom(value).buildPartial();
-          } else {
-            read_ = value;
-          }
+          ensureReadIsMutable();
+          read_.add(index, builderForValue.build());
           onChanged();
         } else {
-          readBuilder_.mergeFrom(value);
+          readBuilder_.addMessage(index, builderForValue.build());
         }
-        bitField0_ |= 0x00000010;
         return this;
       }
       /**
-       * <code>optional .textsecure.SyncMessage.Read read = 5;</code>
+       * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
+       */
+      public Builder addAllRead(
+          java.lang.Iterable<? extends org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read> values) {
+        if (readBuilder_ == null) {
+          ensureReadIsMutable();
+          super.addAll(values, read_);
+          onChanged();
+        } else {
+          readBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
        */
       public Builder clearRead() {
         if (readBuilder_ == null) {
-          read_ = org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.getDefaultInstance();
+          read_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000010);
           onChanged();
         } else {
           readBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
       /**
-       * <code>optional .textsecure.SyncMessage.Read read = 5;</code>
+       * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
        */
-      public org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.Builder getReadBuilder() {
-        bitField0_ |= 0x00000010;
-        onChanged();
-        return getReadFieldBuilder().getBuilder();
+      public Builder removeRead(int index) {
+        if (readBuilder_ == null) {
+          ensureReadIsMutable();
+          read_.remove(index);
+          onChanged();
+        } else {
+          readBuilder_.remove(index);
+        }
+        return this;
       }
       /**
-       * <code>optional .textsecure.SyncMessage.Read read = 5;</code>
+       * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
        */
-      public org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.ReadOrBuilder getReadOrBuilder() {
-        if (readBuilder_ != null) {
-          return readBuilder_.getMessageOrBuilder();
-        } else {
-          return read_;
+      public org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.Builder getReadBuilder(
+          int index) {
+        return getReadFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
+       */
+      public org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.ReadOrBuilder getReadOrBuilder(
+          int index) {
+        if (readBuilder_ == null) {
+          return read_.get(index);  } else {
+          return readBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>optional .textsecure.SyncMessage.Read read = 5;</code>
+       * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      public java.util.List<? extends org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.ReadOrBuilder> 
+           getReadOrBuilderList() {
+        if (readBuilder_ != null) {
+          return readBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(read_);
+        }
+      }
+      /**
+       * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
+       */
+      public org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.Builder addReadBuilder() {
+        return getReadFieldBuilder().addBuilder(
+            org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
+       */
+      public org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.Builder addReadBuilder(
+          int index) {
+        return getReadFieldBuilder().addBuilder(
+            index, org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .textsecure.SyncMessage.Read read = 5;</code>
+       */
+      public java.util.List<org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.Builder> 
+           getReadBuilderList() {
+        return getReadFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
           org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read, org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.Builder, org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.ReadOrBuilder> 
           getReadFieldBuilder() {
         if (readBuilder_ == null) {
-          readBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          readBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read, org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.Read.Builder, org.whispersystems.textsecure.internal.push.TextSecureProtos.SyncMessage.ReadOrBuilder>(
                   read_,
+                  ((bitField0_ & 0x00000010) == 0x00000010),
                   getParentForChildren(),
                   isClean());
           read_ = null;
@@ -12060,13 +12313,13 @@ public final class TextSecureProtos {
       "ge\022\014\n\004body\030\001 \001(\t\0222\n\013attachments\030\002 \003(\0132\035." +
       "textsecure.AttachmentPointer\022\'\n\005group\030\003 " +
       "\001(\0132\030.textsecure.GroupContext\022\r\n\005flags\030\004" +
-      " \001(\r\"\030\n\005Flags\022\017\n\013END_SESSION\020\001\"\317\004\n\013SyncM" +
+      " \001(\r\"\030\n\005Flags\022\017\n\013END_SESSION\020\001\"\336\004\n\013SyncM" +
       "essage\022*\n\004sent\030\001 \001(\0132\034.textsecure.SyncMe" +
       "ssage.Sent\0222\n\010contacts\030\002 \001(\0132 .textsecur" +
       "e.SyncMessage.Contacts\022.\n\006groups\030\003 \001(\0132\036" +
       ".textsecure.SyncMessage.Groups\0220\n\007reques" +
       "t\030\004 \001(\0132\037.textsecure.SyncMessage.Request" +
-      "\022*\n\004read\030\005 \001(\0132\034.textsecure.SyncMessage.",
+      "\022*\n\004read\030\005 \003(\0132\034.textsecure.SyncMessage.",
       "Read\032X\n\004Sent\022\023\n\013destination\030\001 \001(\t\022\021\n\ttim" +
       "estamp\030\002 \001(\004\022(\n\007message\030\003 \001(\0132\027.textsecu" +
       "re.DataMessage\0327\n\010Contacts\022+\n\004blob\030\001 \001(\013" +
@@ -12074,26 +12327,26 @@ public final class TextSecureProtos {
       "s\022+\n\004blob\030\001 \001(\0132\035.textsecure.AttachmentP" +
       "ointer\032l\n\007Request\0222\n\004type\030\001 \001(\0162$.textse" +
       "cure.SyncMessage.Request.Type\"-\n\004Type\022\013\n" +
-      "\007UNKNOWN\020\000\022\014\n\010CONTACTS\020\001\022\n\n\006GROUPS\020\002\032\032\n\004" +
-      "Read\022\022\n\ntimestamps\030\001 \003(\004\"b\n\021AttachmentPo" +
-      "inter\022\n\n\002id\030\001 \001(\006\022\023\n\013contentType\030\002 \001(\t\022\013",
-      "\n\003key\030\003 \001(\014\022\014\n\004size\030\004 \001(\r\022\021\n\tthumbnail\030\005" +
-      " \001(\014\"\315\001\n\014GroupContext\022\n\n\002id\030\001 \001(\014\022+\n\004typ" +
-      "e\030\002 \001(\0162\035.textsecure.GroupContext.Type\022\014" +
-      "\n\004name\030\003 \001(\t\022\017\n\007members\030\004 \003(\t\022-\n\006avatar\030" +
-      "\005 \001(\0132\035.textsecure.AttachmentPointer\"6\n\004" +
-      "Type\022\013\n\007UNKNOWN\020\000\022\n\n\006UPDATE\020\001\022\013\n\007DELIVER" +
-      "\020\002\022\010\n\004QUIT\020\003\"\220\001\n\016ContactDetails\022\016\n\006numbe" +
-      "r\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\0221\n\006avatar\030\003 \001(\0132!." +
-      "textsecure.ContactDetails.Avatar\032-\n\006Avat" +
-      "ar\022\023\n\013contentType\030\001 \001(\t\022\016\n\006length\030\002 \001(\r\"",
-      "\257\001\n\014GroupDetails\022\n\n\002id\030\001 \001(\014\022\014\n\004name\030\002 \001" +
-      "(\t\022\017\n\007members\030\003 \003(\t\022/\n\006avatar\030\004 \001(\0132\037.te" +
-      "xtsecure.GroupDetails.Avatar\022\024\n\006active\030\005" +
-      " \001(\010:\004true\032-\n\006Avatar\022\023\n\013contentType\030\001 \001(" +
-      "\t\022\016\n\006length\030\002 \001(\rB?\n+org.whispersystems." +
-      "textsecure.internal.pushB\020TextSecureProt" +
-      "os"
+      "\007UNKNOWN\020\000\022\014\n\010CONTACTS\020\001\022\n\n\006GROUPS\020\002\032)\n\004" +
+      "Read\022\016\n\006sender\030\001 \001(\t\022\021\n\ttimestamp\030\002 \001(\004\"" +
+      "b\n\021AttachmentPointer\022\n\n\002id\030\001 \001(\006\022\023\n\013cont",
+      "entType\030\002 \001(\t\022\013\n\003key\030\003 \001(\014\022\014\n\004size\030\004 \001(\r" +
+      "\022\021\n\tthumbnail\030\005 \001(\014\"\315\001\n\014GroupContext\022\n\n\002" +
+      "id\030\001 \001(\014\022+\n\004type\030\002 \001(\0162\035.textsecure.Grou" +
+      "pContext.Type\022\014\n\004name\030\003 \001(\t\022\017\n\007members\030\004" +
+      " \003(\t\022-\n\006avatar\030\005 \001(\0132\035.textsecure.Attach" +
+      "mentPointer\"6\n\004Type\022\013\n\007UNKNOWN\020\000\022\n\n\006UPDA" +
+      "TE\020\001\022\013\n\007DELIVER\020\002\022\010\n\004QUIT\020\003\"\220\001\n\016ContactD" +
+      "etails\022\016\n\006number\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\0221\n\006" +
+      "avatar\030\003 \001(\0132!.textsecure.ContactDetails" +
+      ".Avatar\032-\n\006Avatar\022\023\n\013contentType\030\001 \001(\t\022\016",
+      "\n\006length\030\002 \001(\r\"\257\001\n\014GroupDetails\022\n\n\002id\030\001 " +
+      "\001(\014\022\014\n\004name\030\002 \001(\t\022\017\n\007members\030\003 \003(\t\022/\n\006av" +
+      "atar\030\004 \001(\0132\037.textsecure.GroupDetails.Ava" +
+      "tar\022\024\n\006active\030\005 \001(\010:\004true\032-\n\006Avatar\022\023\n\013c" +
+      "ontentType\030\001 \001(\t\022\016\n\006length\030\002 \001(\rB?\n+org." +
+      "whispersystems.textsecure.internal.pushB" +
+      "\020TextSecureProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -12153,7 +12406,7 @@ public final class TextSecureProtos {
           internal_static_textsecure_SyncMessage_Read_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_SyncMessage_Read_descriptor,
-              new java.lang.String[] { "Timestamps", });
+              new java.lang.String[] { "Sender", "Timestamp", });
           internal_static_textsecure_AttachmentPointer_descriptor =
             getDescriptor().getMessageTypes().get(4);
           internal_static_textsecure_AttachmentPointer_fieldAccessorTable = new
