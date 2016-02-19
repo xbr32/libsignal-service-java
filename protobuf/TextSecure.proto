@@ -62,10 +62,15 @@ message SyncMessage {
     optional Type type = 1;
   }
 
+  message Read {
+    repeated uint64 timestamps = 1;
+  }
+
   optional Sent     sent     = 1;
   optional Contacts contacts = 2;
   optional Groups   groups   = 3;
   optional Request  request  = 4;
+  optional Read     read     = 5;
 }
 
 message AttachmentPointer {
