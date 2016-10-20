@@ -1,12 +1,13 @@
-org.whispersystems.textsecure.api
-org.whispersystems.textsecure.api.crypto
-org.whispersystems.textsecure.api.messages
-org.whispersystems.textsecure.api.push
-org.whispersystems.textsecure.api.push.exceptions
-org.whispersystems.textsecure.api.util
-org.whispersystems.textsecure.internal.crypto
-org.whispersystems.textsecure.internal.push
-org.whispersystems.textsecure.internal.push.exceptions
-org.whispersystems.textsecure.internal.util
-org.whispersystems.textsecure.internal.websocket
+org.whispersystems.signalservice.api
+org.whispersystems.signalservice.api.crypto
+org.whispersystems.signalservice.api.messages
+org.whispersystems.signalservice.api.messages.multidevice
+org.whispersystems.signalservice.api.push
+org.whispersystems.signalservice.api.push.exceptions
+org.whispersystems.signalservice.api.util
+org.whispersystems.signalservice.internal.crypto
+org.whispersystems.signalservice.internal.push
+org.whispersystems.signalservice.internal.push.exceptions
+org.whispersystems.signalservice.internal.util
+org.whispersystems.signalservice.internal.websocket
 
