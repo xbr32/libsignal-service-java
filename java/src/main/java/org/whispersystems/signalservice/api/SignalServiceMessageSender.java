@@ -21,6 +21,10 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
+import org.whispersystems.signalservice.api.messages.calls.AnswerMessage;
+import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
+import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
+import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.BlockedListMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
@@ -36,7 +40,9 @@ import org.whispersystems.signalservice.internal.push.OutgoingPushMessageList;
 import org.whispersystems.signalservice.internal.push.PushAttachmentData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.SendMessageResponse;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.AttachmentPointer;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.DataMessage;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
@@ -62,7 +68,7 @@ public class SignalServiceMessageSender {
 
   private final PushServiceSocket       socket;
   private final SignalProtocolStore     store;
-  private final SignalServiceAddress localAddress;
+  private final SignalServiceAddress    localAddress;
   private final Optional<EventListener> eventListener;
 
   /**
@@ -98,6 +104,13 @@ public class SignalServiceMessageSender {
    */
   public void sendDeliveryReceipt(SignalServiceAddress recipient, long messageId) throws IOException {
     this.socket.sendReceipt(recipient.getNumber(), messageId, recipient.getRelay());
+  }
+
+  public void sendCallMessage(SignalServiceAddress recipient, SignalServiceCallMessage message)
+      throws IOException, UntrustedIdentityException
+  {
+    byte[] content = createCallContent(message);
+    sendMessage(recipient, System.currentTimeMillis(), content, false);
   }
 
   /**
@@ -174,6 +187,14 @@ public class SignalServiceMessageSender {
     sendMessage(localAddress, System.currentTimeMillis(), content, false);
   }
 
+  public void setSoTimeoutMillis(long soTimeoutMillis) {
+    socket.setSoTimeoutMillis(soTimeoutMillis);
+  }
+
+  public void cancelInFlightRequests() {
+    socket.cancelInFlightRequests();
+  }
+
   private byte[] createMessageContent(SignalServiceDataMessage message) throws IOException {
     DataMessage.Builder     builder  = DataMessage.newBuilder();
     List<AttachmentPointer> pointers = createAttachmentPointers(message.getAttachments());
@@ -203,6 +224,37 @@ public class SignalServiceMessageSender {
     }
 
     return builder.build().toByteArray();
+  }
+
+  private byte[] createCallContent(SignalServiceCallMessage callMessage) {
+    Content.Builder     container = Content.newBuilder();
+    CallMessage.Builder builder   = CallMessage.newBuilder();
+
+    if (callMessage.getOfferMessage().isPresent()) {
+      OfferMessage offer = callMessage.getOfferMessage().get();
+      builder.setOffer(CallMessage.Offer.newBuilder()
+                                        .setId(offer.getId())
+                                        .setDescription(offer.getDescription()));
+    } else if (callMessage.getAnswerMessage().isPresent()) {
+      AnswerMessage answer = callMessage.getAnswerMessage().get();
+      builder.setAnswer(CallMessage.Answer.newBuilder()
+                                          .setId(answer.getId())
+                                          .setDescription(answer.getDescription()));
+    } else if (callMessage.getIceUpdateMessage().isPresent()) {
+      IceUpdateMessage update = callMessage.getIceUpdateMessage().get();
+      builder.setIceUpdate(CallMessage.IceUpdate.newBuilder()
+                                                .setId(update.getId())
+                                                .setSdp(update.getSdp())
+                                                .setSdpMid(update.getSdpMid())
+                                                .setSdpMLineIndex(update.getSdpMLineIndex()));
+    } else if (callMessage.getHangupMessage().isPresent()) {
+      builder.setHangup(CallMessage.Hangup.newBuilder().setId(callMessage.getHangupMessage().get().getId()));
+    } else if (callMessage.getBusyMessage().isPresent()) {
+      builder.setBusy(CallMessage.Busy.newBuilder().setId(callMessage.getBusyMessage().get().getId()));
+    }
+
+    container.setCallMessage(builder);
+    return container.build().toByteArray();
   }
 
   private byte[] createMultiDeviceContactsContent(SignalServiceAttachmentStream contacts) throws IOException {

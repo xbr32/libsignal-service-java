@@ -16,6 +16,7 @@ import org.whispersystems.libsignal.ecc.ECPublicKey;
 import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
@@ -277,6 +278,18 @@ public class SignalServiceAccountManager {
 
   public void removeDevice(long deviceId) throws IOException {
     this.pushServiceSocket.removeDevice(deviceId);
+  }
+
+  public TurnServerInfo getTurnServerInfo() throws IOException {
+    return this.pushServiceSocket.getTurnServerInfo();
+  }
+
+  public void setSoTimeoutMillis(long soTimeoutMillis) {
+    this.pushServiceSocket.setSoTimeoutMillis(soTimeoutMillis);
+  }
+
+  public void cancelInFlightRequests() {
+    this.pushServiceSocket.cancelInFlightRequests();
   }
 
   private String createDirectoryServerToken(String e164number, boolean urlSafe) {
