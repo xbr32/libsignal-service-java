@@ -2150,19 +2150,30 @@ public final class SignalServiceProtos {
      */
     org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.AnswerOrBuilder getAnswerOrBuilder();
 
-    // optional .signalservice.CallMessage.IceUpdate iceUpdate = 3;
+    // repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;
     /**
-     * <code>optional .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+     * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
      */
-    boolean hasIceUpdate();
+    java.util.List<org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate> 
+        getIceUpdateList();
     /**
-     * <code>optional .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+     * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
      */
-    org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate getIceUpdate();
+    org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate getIceUpdate(int index);
     /**
-     * <code>optional .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+     * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
      */
-    org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder getIceUpdateOrBuilder();
+    int getIceUpdateCount();
+    /**
+     * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+     */
+    java.util.List<? extends org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder> 
+        getIceUpdateOrBuilderList();
+    /**
+     * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+     */
+    org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder getIceUpdateOrBuilder(
+        int index);
 
     // optional .signalservice.CallMessage.Hangup hangup = 4;
     /**
@@ -2270,21 +2281,16 @@ public final class SignalServiceProtos {
               break;
             }
             case 26: {
-              org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000004) == 0x00000004)) {
-                subBuilder = iceUpdate_.toBuilder();
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                iceUpdate_ = new java.util.ArrayList<org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate>();
+                mutable_bitField0_ |= 0x00000004;
               }
-              iceUpdate_ = input.readMessage(org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(iceUpdate_);
-                iceUpdate_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000004;
+              iceUpdate_.add(input.readMessage(org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.PARSER, extensionRegistry));
               break;
             }
             case 34: {
               org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.Hangup.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000008) == 0x00000008)) {
+              if (((bitField0_ & 0x00000004) == 0x00000004)) {
                 subBuilder = hangup_.toBuilder();
               }
               hangup_ = input.readMessage(org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.Hangup.PARSER, extensionRegistry);
@@ -2292,12 +2298,12 @@ public final class SignalServiceProtos {
                 subBuilder.mergeFrom(hangup_);
                 hangup_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000008;
+              bitField0_ |= 0x00000004;
               break;
             }
             case 42: {
               org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.Busy.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000010) == 0x00000010)) {
+              if (((bitField0_ & 0x00000008) == 0x00000008)) {
                 subBuilder = busy_.toBuilder();
               }
               busy_ = input.readMessage(org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.Busy.PARSER, extensionRegistry);
@@ -2305,7 +2311,7 @@ public final class SignalServiceProtos {
                 subBuilder.mergeFrom(busy_);
                 busy_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000010;
+              bitField0_ |= 0x00000008;
               break;
             }
           }
@@ -2316,6 +2322,9 @@ public final class SignalServiceProtos {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+          iceUpdate_ = java.util.Collections.unmodifiableList(iceUpdate_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -5077,26 +5086,40 @@ public final class SignalServiceProtos {
       return answer_;
     }
 
-    // optional .signalservice.CallMessage.IceUpdate iceUpdate = 3;
+    // repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;
     public static final int ICEUPDATE_FIELD_NUMBER = 3;
-    private org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate iceUpdate_;
+    private java.util.List<org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate> iceUpdate_;
     /**
-     * <code>optional .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+     * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
      */
-    public boolean hasIceUpdate() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
-     */
-    public org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate getIceUpdate() {
+    public java.util.List<org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate> getIceUpdateList() {
       return iceUpdate_;
     }
     /**
-     * <code>optional .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+     * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
      */
-    public org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder getIceUpdateOrBuilder() {
+    public java.util.List<? extends org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder> 
+        getIceUpdateOrBuilderList() {
       return iceUpdate_;
+    }
+    /**
+     * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+     */
+    public int getIceUpdateCount() {
+      return iceUpdate_.size();
+    }
+    /**
+     * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+     */
+    public org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate getIceUpdate(int index) {
+      return iceUpdate_.get(index);
+    }
+    /**
+     * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+     */
+    public org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder getIceUpdateOrBuilder(
+        int index) {
+      return iceUpdate_.get(index);
     }
 
     // optional .signalservice.CallMessage.Hangup hangup = 4;
@@ -5106,7 +5129,7 @@ public final class SignalServiceProtos {
      * <code>optional .signalservice.CallMessage.Hangup hangup = 4;</code>
      */
     public boolean hasHangup() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
      * <code>optional .signalservice.CallMessage.Hangup hangup = 4;</code>
@@ -5128,7 +5151,7 @@ public final class SignalServiceProtos {
      * <code>optional .signalservice.CallMessage.Busy busy = 5;</code>
      */
     public boolean hasBusy() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
      * <code>optional .signalservice.CallMessage.Busy busy = 5;</code>
@@ -5146,7 +5169,7 @@ public final class SignalServiceProtos {
     private void initFields() {
       offer_ = org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.Offer.getDefaultInstance();
       answer_ = org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.Answer.getDefaultInstance();
-      iceUpdate_ = org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.getDefaultInstance();
+      iceUpdate_ = java.util.Collections.emptyList();
       hangup_ = org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.Hangup.getDefaultInstance();
       busy_ = org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.Busy.getDefaultInstance();
     }
@@ -5168,13 +5191,13 @@ public final class SignalServiceProtos {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeMessage(2, answer_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeMessage(3, iceUpdate_);
+      for (int i = 0; i < iceUpdate_.size(); i++) {
+        output.writeMessage(3, iceUpdate_.get(i));
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeMessage(4, hangup_);
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeMessage(5, busy_);
       }
       getUnknownFields().writeTo(output);
@@ -5194,15 +5217,15 @@ public final class SignalServiceProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, answer_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      for (int i = 0; i < iceUpdate_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, iceUpdate_);
+          .computeMessageSize(3, iceUpdate_.get(i));
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, hangup_);
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, busy_);
       }
@@ -5340,11 +5363,11 @@ public final class SignalServiceProtos {
         }
         bitField0_ = (bitField0_ & ~0x00000002);
         if (iceUpdateBuilder_ == null) {
-          iceUpdate_ = org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.getDefaultInstance();
+          iceUpdate_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
         } else {
           iceUpdateBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
         if (hangupBuilder_ == null) {
           hangup_ = org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.Hangup.getDefaultInstance();
         } else {
@@ -5401,16 +5424,17 @@ public final class SignalServiceProtos {
         } else {
           result.answer_ = answerBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
         if (iceUpdateBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004)) {
+            iceUpdate_ = java.util.Collections.unmodifiableList(iceUpdate_);
+            bitField0_ = (bitField0_ & ~0x00000004);
+          }
           result.iceUpdate_ = iceUpdate_;
         } else {
           result.iceUpdate_ = iceUpdateBuilder_.build();
         }
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
+          to_bitField0_ |= 0x00000004;
         }
         if (hangupBuilder_ == null) {
           result.hangup_ = hangup_;
@@ -5418,7 +5442,7 @@ public final class SignalServiceProtos {
           result.hangup_ = hangupBuilder_.build();
         }
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
+          to_bitField0_ |= 0x00000008;
         }
         if (busyBuilder_ == null) {
           result.busy_ = busy_;
@@ -5447,8 +5471,31 @@ public final class SignalServiceProtos {
         if (other.hasAnswer()) {
           mergeAnswer(other.getAnswer());
         }
-        if (other.hasIceUpdate()) {
-          mergeIceUpdate(other.getIceUpdate());
+        if (iceUpdateBuilder_ == null) {
+          if (!other.iceUpdate_.isEmpty()) {
+            if (iceUpdate_.isEmpty()) {
+              iceUpdate_ = other.iceUpdate_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+            } else {
+              ensureIceUpdateIsMutable();
+              iceUpdate_.addAll(other.iceUpdate_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.iceUpdate_.isEmpty()) {
+            if (iceUpdateBuilder_.isEmpty()) {
+              iceUpdateBuilder_.dispose();
+              iceUpdateBuilder_ = null;
+              iceUpdate_ = other.iceUpdate_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+              iceUpdateBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getIceUpdateFieldBuilder() : null;
+            } else {
+              iceUpdateBuilder_.addAllMessages(other.iceUpdate_);
+            }
+          }
         }
         if (other.hasHangup()) {
           mergeHangup(other.getHangup());
@@ -5717,116 +5764,239 @@ public final class SignalServiceProtos {
         return answerBuilder_;
       }
 
-      // optional .signalservice.CallMessage.IceUpdate iceUpdate = 3;
-      private org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate iceUpdate_ = org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate, org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.Builder, org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder> iceUpdateBuilder_;
-      /**
-       * <code>optional .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
-       */
-      public boolean hasIceUpdate() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+      // repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;
+      private java.util.List<org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate> iceUpdate_ =
+        java.util.Collections.emptyList();
+      private void ensureIceUpdateIsMutable() {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+          iceUpdate_ = new java.util.ArrayList<org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate>(iceUpdate_);
+          bitField0_ |= 0x00000004;
+         }
       }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate, org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.Builder, org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder> iceUpdateBuilder_;
+
       /**
-       * <code>optional .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+       * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
        */
-      public org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate getIceUpdate() {
+      public java.util.List<org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate> getIceUpdateList() {
         if (iceUpdateBuilder_ == null) {
-          return iceUpdate_;
+          return java.util.Collections.unmodifiableList(iceUpdate_);
         } else {
-          return iceUpdateBuilder_.getMessage();
+          return iceUpdateBuilder_.getMessageList();
         }
       }
       /**
-       * <code>optional .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+       * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
        */
-      public Builder setIceUpdate(org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate value) {
+      public int getIceUpdateCount() {
+        if (iceUpdateBuilder_ == null) {
+          return iceUpdate_.size();
+        } else {
+          return iceUpdateBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+       */
+      public org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate getIceUpdate(int index) {
+        if (iceUpdateBuilder_ == null) {
+          return iceUpdate_.get(index);
+        } else {
+          return iceUpdateBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+       */
+      public Builder setIceUpdate(
+          int index, org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate value) {
         if (iceUpdateBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          iceUpdate_ = value;
+          ensureIceUpdateIsMutable();
+          iceUpdate_.set(index, value);
           onChanged();
         } else {
-          iceUpdateBuilder_.setMessage(value);
+          iceUpdateBuilder_.setMessage(index, value);
         }
-        bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>optional .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+       * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
        */
       public Builder setIceUpdate(
+          int index, org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.Builder builderForValue) {
+        if (iceUpdateBuilder_ == null) {
+          ensureIceUpdateIsMutable();
+          iceUpdate_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          iceUpdateBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+       */
+      public Builder addIceUpdate(org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate value) {
+        if (iceUpdateBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureIceUpdateIsMutable();
+          iceUpdate_.add(value);
+          onChanged();
+        } else {
+          iceUpdateBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+       */
+      public Builder addIceUpdate(
+          int index, org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate value) {
+        if (iceUpdateBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureIceUpdateIsMutable();
+          iceUpdate_.add(index, value);
+          onChanged();
+        } else {
+          iceUpdateBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+       */
+      public Builder addIceUpdate(
           org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.Builder builderForValue) {
         if (iceUpdateBuilder_ == null) {
-          iceUpdate_ = builderForValue.build();
+          ensureIceUpdateIsMutable();
+          iceUpdate_.add(builderForValue.build());
           onChanged();
         } else {
-          iceUpdateBuilder_.setMessage(builderForValue.build());
+          iceUpdateBuilder_.addMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>optional .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+       * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
        */
-      public Builder mergeIceUpdate(org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate value) {
+      public Builder addIceUpdate(
+          int index, org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.Builder builderForValue) {
         if (iceUpdateBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) == 0x00000004) &&
-              iceUpdate_ != org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.getDefaultInstance()) {
-            iceUpdate_ =
-              org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.newBuilder(iceUpdate_).mergeFrom(value).buildPartial();
-          } else {
-            iceUpdate_ = value;
-          }
+          ensureIceUpdateIsMutable();
+          iceUpdate_.add(index, builderForValue.build());
           onChanged();
         } else {
-          iceUpdateBuilder_.mergeFrom(value);
+          iceUpdateBuilder_.addMessage(index, builderForValue.build());
         }
-        bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>optional .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+       * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+       */
+      public Builder addAllIceUpdate(
+          java.lang.Iterable<? extends org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate> values) {
+        if (iceUpdateBuilder_ == null) {
+          ensureIceUpdateIsMutable();
+          super.addAll(values, iceUpdate_);
+          onChanged();
+        } else {
+          iceUpdateBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
        */
       public Builder clearIceUpdate() {
         if (iceUpdateBuilder_ == null) {
-          iceUpdate_ = org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.getDefaultInstance();
+          iceUpdate_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
           onChanged();
         } else {
           iceUpdateBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       /**
-       * <code>optional .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+       * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
        */
-      public org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.Builder getIceUpdateBuilder() {
-        bitField0_ |= 0x00000004;
-        onChanged();
-        return getIceUpdateFieldBuilder().getBuilder();
+      public Builder removeIceUpdate(int index) {
+        if (iceUpdateBuilder_ == null) {
+          ensureIceUpdateIsMutable();
+          iceUpdate_.remove(index);
+          onChanged();
+        } else {
+          iceUpdateBuilder_.remove(index);
+        }
+        return this;
       }
       /**
-       * <code>optional .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+       * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
        */
-      public org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder getIceUpdateOrBuilder() {
-        if (iceUpdateBuilder_ != null) {
-          return iceUpdateBuilder_.getMessageOrBuilder();
-        } else {
-          return iceUpdate_;
+      public org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.Builder getIceUpdateBuilder(
+          int index) {
+        return getIceUpdateFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+       */
+      public org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder getIceUpdateOrBuilder(
+          int index) {
+        if (iceUpdateBuilder_ == null) {
+          return iceUpdate_.get(index);  } else {
+          return iceUpdateBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>optional .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+       * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      public java.util.List<? extends org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder> 
+           getIceUpdateOrBuilderList() {
+        if (iceUpdateBuilder_ != null) {
+          return iceUpdateBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(iceUpdate_);
+        }
+      }
+      /**
+       * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+       */
+      public org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.Builder addIceUpdateBuilder() {
+        return getIceUpdateFieldBuilder().addBuilder(
+            org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+       */
+      public org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.Builder addIceUpdateBuilder(
+          int index) {
+        return getIceUpdateFieldBuilder().addBuilder(
+            index, org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
+       */
+      public java.util.List<org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.Builder> 
+           getIceUpdateBuilderList() {
+        return getIceUpdateFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
           org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate, org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.Builder, org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder> 
           getIceUpdateFieldBuilder() {
         if (iceUpdateBuilder_ == null) {
-          iceUpdateBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          iceUpdateBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate, org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdate.Builder, org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder>(
                   iceUpdate_,
+                  ((bitField0_ & 0x00000004) == 0x00000004),
                   getParentForChildren(),
                   isClean());
           iceUpdate_ = null;
@@ -17526,7 +17696,7 @@ public final class SignalServiceProtos {
       "CallMessage\"\330\003\n\013CallMessage\022/\n\005offer\030\001 \001" +
       "(\0132 .signalservice.CallMessage.Offer\0221\n\006" +
       "answer\030\002 \001(\0132!.signalservice.CallMessage" +
-      ".Answer\0227\n\ticeUpdate\030\003 \001(\0132$.signalservi" +
+      ".Answer\0227\n\ticeUpdate\030\003 \003(\0132$.signalservi" +
       "ce.CallMessage.IceUpdate\0221\n\006hangup\030\004 \001(\013" +
       "2!.signalservice.CallMessage.Hangup\022-\n\004b" +
       "usy\030\005 \001(\0132\037.signalservice.CallMessage.Bu" +

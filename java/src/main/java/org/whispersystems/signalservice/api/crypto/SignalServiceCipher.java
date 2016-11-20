@@ -210,12 +210,14 @@ public class SignalServiceCipher {
     } else if (content.hasAnswer()) {
       CallMessage.Answer answerContent = content.getAnswer();
       return SignalServiceCallMessage.forAnswer(new AnswerMessage(answerContent.getId(), answerContent.getDescription()));
-    } else if (content.hasIceUpdate()) {
-      CallMessage.IceUpdate iceUpdate = content.getIceUpdate();
-      return SignalServiceCallMessage.forIceUpdate(new IceUpdateMessage(iceUpdate.getId(),
-                                                                        iceUpdate.getSdpMid(),
-                                                                        iceUpdate.getSdpMLineIndex(),
-                                                                        iceUpdate.getSdp()));
+    } else if (content.getIceUpdateCount() > 0) {
+      List<IceUpdateMessage> iceUpdates = new LinkedList<>();
+
+      for (CallMessage.IceUpdate iceUpdate : content.getIceUpdateList()) {
+        iceUpdates.add(new IceUpdateMessage(iceUpdate.getId(), iceUpdate.getSdpMid(), iceUpdate.getSdpMLineIndex(), iceUpdate.getSdp()));
+      }
+
+      return SignalServiceCallMessage.forIceUpdates(iceUpdates);
     } else if (content.hasHangup()) {
       CallMessage.Hangup hangup = content.getHangup();
       return SignalServiceCallMessage.forHangup(new HangupMessage(hangup.getId()));

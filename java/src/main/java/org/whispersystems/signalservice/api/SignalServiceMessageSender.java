@@ -40,7 +40,6 @@ import org.whispersystems.signalservice.internal.push.OutgoingPushMessageList;
 import org.whispersystems.signalservice.internal.push.PushAttachmentData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.SendMessageResponse;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.AttachmentPointer;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content;
@@ -240,13 +239,16 @@ public class SignalServiceMessageSender {
       builder.setAnswer(CallMessage.Answer.newBuilder()
                                           .setId(answer.getId())
                                           .setDescription(answer.getDescription()));
-    } else if (callMessage.getIceUpdateMessage().isPresent()) {
-      IceUpdateMessage update = callMessage.getIceUpdateMessage().get();
-      builder.setIceUpdate(CallMessage.IceUpdate.newBuilder()
-                                                .setId(update.getId())
-                                                .setSdp(update.getSdp())
-                                                .setSdpMid(update.getSdpMid())
-                                                .setSdpMLineIndex(update.getSdpMLineIndex()));
+    } else if (callMessage.getIceUpdateMessages().isPresent()) {
+      List<IceUpdateMessage> updates = callMessage.getIceUpdateMessages().get();
+
+      for (IceUpdateMessage update : updates) {
+        builder.addIceUpdate(CallMessage.IceUpdate.newBuilder()
+                                                  .setId(update.getId())
+                                                  .setSdp(update.getSdp())
+                                                  .setSdpMid(update.getSdpMid())
+                                                  .setSdpMLineIndex(update.getSdpMLineIndex()));
+      }
     } else if (callMessage.getHangupMessage().isPresent()) {
       builder.setHangup(CallMessage.Hangup.newBuilder().setId(callMessage.getHangupMessage().get().getId()));
     } else if (callMessage.getBusyMessage().isPresent()) {
